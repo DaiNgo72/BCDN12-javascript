@@ -171,6 +171,8 @@ age = 23; // vì chúng ta đã khai báo rồi, chừ chỉ gán lại giá tr�
 
 // 24 = age; ❌
 
+// let age = 20;
+
 console.log("age " + age);
 
 /**
@@ -196,12 +198,172 @@ console.log("age " + age);
 // function
 
 // Khai báo chức năng
-function tenChucNang(){
+function tenChucNang() {
     // đặt code cho tính năng bên trong này
 }
 
 // Thực thi chức năng đó
 tenChucNang()
+
+
+// --------------------
+
+// b1: Lấy element mà mình muốn thêm sự kiện vào
+
+// element trên html lấy được bằng javascript
+// thông qua id của element đó
+let accessEle = document.getElementById('access');
+let exchangeEle = document.getElementById('exchange');
+let excelEle = document.getElementById('excel');
+
+// console.log(exchangeEle);
+// console.log(accessEle);
+
+// b2: gắn sự kiện click cho element
+function handleClickAccess() {
+    console.log('click access');
+
+    // Lấy thuộc tính backgroundColor style của element
+    // let color = accessEle.style.backgroundColor;
+    // {GET}
+    let color = accessEle.getAttribute("data-color");
+    console.log(color); //a4373a
+
+    // {SET}
+    // B1: lấy được element
+    let boxLargeEle = document.getElementById('box-large');
+    console.log(boxLargeEle);
+    // B2: chỉnh sửa element
+
+    // cập nhật background-color của boxLargeEle về giá trị của biến color 
+    boxLargeEle.style.backgroundColor = color;
+
+
+    // -----------------------------
+    let boxNameEle = document.getElementById('box-name');
+    let boxColorEle = document.getElementById('box-color');
+
+    // console.log('boxNameEle :::', boxNameEle);
+
+    boxNameEle.textContent = "Access";
+    boxColorEle.textContent = color;
+}
+
+// phải gán function (chức năng) cho các sự kiện (click)
+accessEle.onclick = handleClickAccess;
+// handleClickAccess()
+
+
+function handleClickExchange() {
+    console.log("click exchange");
+    // let color = exchangeEle.style.backgroundColor;
+    let color = exchangeEle.getAttribute("data-color");
+    console.log(color); //a4373a
+
+    let boxLargeEle = document.getElementById('box-large');
+    console.log(boxLargeEle);
+    // B2: chỉnh sửa element
+
+    // cập nhật background-color của boxLargeEle về giá trị của biến color 
+    boxLargeEle.style.backgroundColor = color;
+
+    // -----------------------------
+    let boxNameEle = document.getElementById('box-name');
+    let boxColorEle = document.getElementById('box-color');
+
+    // console.log('boxNameEle :::', boxNameEle);
+
+    let name = "Exchange";
+    boxNameEle.textContent = name;
+    boxColorEle.textContent = color;
+
+}
+
+exchangeEle.onclick = handleClickExchange;
+
+
+function handleClickExcel() {
+    console.log("click excel");
+    // let color = excelEle.style.backgroundColor;
+    let color = excelEle.getAttribute("data-color");
+
+    console.log(color); //a4373a
+
+
+    let boxLargeEle = document.getElementById('box-large');
+    console.log(boxLargeEle);
+    // B2: chỉnh sửa element
+
+    // cập nhật background-color của boxLargeEle về giá trị của biến color 
+    boxLargeEle.style.backgroundColor = color;
+
+    // -----------------------------
+    let boxNameEle = document.getElementById('box-name');
+    let boxColorEle = document.getElementById('box-color');
+
+    // console.log('boxNameEle :::', boxNameEle);
+
+    boxNameEle.textContent = "Excel";
+    boxColorEle.textContent = color;
+}
+
+excelEle.onclick = handleClickExcel;
+
+// handleClickExcel()
+
+// --------------------------------
+// --------------------------------
+// --------------------------------
+
+/**
+ * Chuẩn:
+ * - Không được khai báo trùng tên biến
+ * - Khi thực hiện function thì phải thực hiện cho xong rồi mới đến câu lệnh tiếp theo
+ */
+// let age = 20; ❌
+
+let year_1 = 2024;
+
+console.log(year_1); // 1. 2024
+
+year_1 = 2020;
+
+console.log(year_1); // 2. 2020
+
+let year_2 = year_1;
+
+console.log(year_2); // 2020
+
+// Scope
+// Global Scope: Có thể sử dụng ở bất cứ nơi nào
+// Function scope (Local Scope): Chỉ cho phép sử dụng bên trong scope đó
+
+let year_3 = 2026;
+
+function abc() {
+    // let year_3 = 2025;
+
+    console.log(year_3); // 1. ??? 
+
+    year_3 = 2027;
+
+    console.log(year_3); // 2. ???
+
+    year_3 = year_3 + 1;
+
+    console.log(year_3); // 3. ???
+}
+
+abc();
+
+abc();
+
+
+console.log(year_3); // 4. ???
+
+
+
+
 
 
 
