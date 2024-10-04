@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./index.css" />
   </head>
 
-  <body>
+  <body class="container">
     <h2>Bài tập 1</h2>
     <div class="bt1">
       <div class="bt1-left">
@@ -91,8 +91,49 @@
       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati,
       sapiente.
     </p>
-    
+
     <hr />
+
+    <h2>Theme Mode</h2>
+    <button id="btn-dark-theme">Dark Mode</button>
+    <button id="btn-light-theme">Light Mode</button>
+    <button id="btn-system-theme">System Mode</button>
+
+    <p class="theme-para">
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur, culpa.
+    </p>
+
+    <!--  -->
+    <hr />
+    <h2>Kiểm tra độ tuổi đi xe máy</h2>
+
+    <input id="age" />
+    <button id="btn-age">Kiểm tra</button>
+
+    <p id="announce">Bạn không đủ tuổi để đi xe máy</p>
+
+    <!--  -->
+    <hr />
+    <h2>Kiểm tra input password</h2>
+    <input type="password" id="password" />
+    <button id="btn-check-pw">Kiểm tra</button>
+    <p id="announce-password">Hợp lệ</p>
+
+    <hr />
+    <h2>Kiểm tra hoàn thành bài tập</h2>
+
+    <label>
+      <input id="radio-done" type="radio" name="check-bt" />
+      Hoàn thành
+    </label>
+
+    <label>
+      <input id="radio-todo" type="radio" name="check-bt" />
+      Chưa hoàn thành
+    </label>
+
+    <button id="btn-check-bt">Kiểm tra</button>
+    <p id="announce-bt">Chưa hoàn thành</p>
 
     <script>
       // Nơi code javascript
@@ -111,5 +152,6 @@
     </script>
 
     <script src="./js-3.js"></script>
+    <script src="./js-4.js"></script>
   </body>
 </html>

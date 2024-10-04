@@ -35,3 +35,15 @@
 .box-info {
     align-self: flex-end;
 }
+
+.light .theme-para {
+    font-size: 40px;
+    color: yellow;
+    background-color: purple;
+}
+
+.dark .theme-para {
+    font-size: 40px;
+    color: white;
+    background-color: black;
+}
