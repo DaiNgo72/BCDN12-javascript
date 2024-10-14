@@ -238,3 +238,5 @@ btnCheckBtEle.onclick = function () {
         console.log('học thêm 1h nữa');
     }
 }
+
+Number("5")
