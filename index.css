@@ -47,3 +47,17 @@
     color: white;
     background-color: black;
 }
+
+.red {
+    background-color: rgb(158, 9, 9);
+    height: 50px;
+    color: white;
+    font-size: 50px;
+}
+
+.blue {
+    background-color: rgb(15, 15, 124);
+    height: 50px;
+    color: white;
+    font-size: 50px;
+}

@@ -284,6 +284,89 @@ function handleChiaHetCho3() {
     } while (demLog < soChiaHetCho3)
 }
 
+function handleInDiv() {
+    let resultDivEle = document.getElementById('result-div');
+    let content = ''
+
+    // content += `<div class="blue">1</div>`;
+    // content += `<div class="red">1</div>`;
+
+    // console.log(content);
+
+    // 1. Biến đếm; 2. Điều kiện để chạy vòng lặp; 3. Tăng biến đếm
+    for (let count = 1; count <= 10; count += 1) {
+        console.log('logic');
+
+        if (count % 2 == 0) {
+            // chẵn
+            content += '<div class="red">' + count + '</div>'
+        } else {
+            // lẻ
+            content += `<div class="blue">${count}</div>`
+        }
+
+    }
+
+    resultDivEle.innerHTML = content
+
+}
+
+function handleBt6() {
+    let n = Number(document.getElementById('so-nguyen-duong-n-2').value);
+    let x = Number(document.getElementById('so-nguyen-duong-x-2').value);
+
+    let tong = x;
+
+
+    for (let count = 2; count <= n; count++) {
+        // ^ :: Không hoạt động trong js
+        // sử dụng: **
+        // hoặc: Math.pow(x, count)
+        tong += x ** count;
+    }
+
+    console.log(tong);
+}
+
+
+// 0, 1, 2
+
+// dọc
+let kq = '';
+
+let doc = '';
+for (let i = 1; i <= 5; i++) {
+    let ngang = ''
+
+    // ngang
+    for (let j = 1; j <= 5; j++) {
+        ngang += "*";
+        /**
+         * 0 0
+         * 0 1
+         * 0 2
+         * 1 0
+         * 1 1
+         * 1 2
+         * 2 0
+         * 2 1
+         * 2 2
+         */
+    }
+
+    // "\n": new line - ngắt dòng giống với <br>
+    doc += ngang + "\n";
+}
+
+console.log(doc);
+
+
+
+
+
+
+
+
 
 
 
