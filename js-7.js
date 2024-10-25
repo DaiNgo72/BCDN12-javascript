@@ -83,19 +83,117 @@ let todoList = [
 ]
 
 
+
 let todoEle = document.getElementById('todo-list');
 
-let content = '';
+// - 1 -
+// hoisting: cơ chế trong javascript
+// dành cho function declaration
+renderTodos();
 
-for (let i = 0; i <= todoList.length - 1; i++) {
-    // content += '<li>' + todoList[i] + '</li>';
+// let content = '';
 
-    // template string
-    content += `<li>${todoList[i]}</li>`;
+// for (let i = 0; i <= todoList.length - 1; i++) {
+//     // content += '<li>' + todoList[i] + '</li>';
+
+//     // template string
+//     content += `<li>${todoList[i]} <button>x</button> </li>`;
+// }
+
+// todoEle.innerHTML = content;
+
+
+
+// ------------------------
+function handleAddTodo() {
+
+    // 1. Lấy giá trị từ input
+    let todo = document.getElementById('todo').value;
+
+    // 2. Thêm giá trị đó vào cuối mảng
+    todoList.push(todo);
+
+
+    // Kiểm tra lại đã thêm vào phần tử vào mảng hay chưa
+    console.log(todoList);
+
+
+    // 3. Render lại mảng todo
+    renderTodos();
 }
 
-todoEle.innerHTML = content;
+function renderTodos() {
+    let content = '';
 
+    for (let i = 0; i <= todoList.length - 1; i++) {
+        // onclick="handleDeleteTodo()"
+        content += `<li>${todoList[i]} <button data-id="${todoList[i]}" class="x-btn" >v</button> </li>`;
+    }
+
+    todoEle.innerHTML = content;
+
+    let listBtn = document.querySelectorAll('.x-btn');
+
+    for (let i = 0; i < listBtn.length; i++) {
+        let xBtn = listBtn[i];
+
+        // xBtn.onclick = function () {
+        //     // Lấy attr của button
+        //     // truyền vào hàm handleDeleteTodo
+        //     let id = xBtn.getAttribute('data-id');
+
+        //     handleDeleteTodo(id);
+        // };
+
+        xBtn.onclick = handleDeleteTodo2
+    }
+}
+
+function handleDeleteTodo2(event) {
+    let id = event.target.getAttribute('data-id');
+    let index = findIndex(todoList, id);
+    if (index == -1) {
+        return;
+    }
+    todoList.splice(index, 1);
+    renderTodos();
+}
+
+function handleDeleteTodo(id) {
+    console.log(id);
+    let index = findIndex(todoList, id);
+    if (index == -1) {
+        return;
+    }
+    // Xoa
+    todoList.splice(index, 1);
+
+    // Render lại mảng todo
+    renderTodos();
+}
+
+function findIndex(arr, value) {
+    let index = -1;
+
+    for (let i = 0; i < arr.length; i++) {
+        let todo = arr[i]
+
+        if (todo == value) {
+            index = i;
+
+            break;
+        }
+    }
+
+    return index;
+}
+
+
+
+/**
+ * querySelector -> 1
+ * querySelectorAll -> nhiều
+ */
 
 
 
