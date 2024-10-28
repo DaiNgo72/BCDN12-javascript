@@ -80,9 +80,9 @@ let todoList = [
     "css",
     "js",
     "git"
-]
+];
 
-
+let doneList = [];
 
 let todoEle = document.getElementById('todo-list');
 
@@ -127,12 +127,16 @@ function renderTodos() {
 
     for (let i = 0; i <= todoList.length - 1; i++) {
         // onclick="handleDeleteTodo()"
-        content += `<li>${todoList[i]} <button data-id="${todoList[i]}" class="x-btn" >v</button> </li>`;
+        content += `<li>${todoList[i]} 
+            <button data-id="${todoList[i]}" class="todo-btn" >
+                <i class="fa-solid fa-check"></i>
+            </button> 
+        </li>`;
     }
 
     todoEle.innerHTML = content;
 
-    let listBtn = document.querySelectorAll('.x-btn');
+    let listBtn = document.querySelectorAll('.todo-btn');
 
     for (let i = 0; i < listBtn.length; i++) {
         let xBtn = listBtn[i];
@@ -145,18 +149,112 @@ function renderTodos() {
         //     handleDeleteTodo(id);
         // };
 
-        xBtn.onclick = handleDeleteTodo2
+        // xBtn.onclick = handleDeleteTodo2
+        xBtn.onclick = handleDoneTodo
     }
 }
 
-function handleDeleteTodo2(event) {
-    let id = event.target.getAttribute('data-id');
-    let index = findIndex(todoList, id);
+function handleDoneTodo(event) {
+    // Delete
+    handleDelete(event);
+
+    // render lại mảng todo
+    renderTodos();
+
+    // Thêm vào mảng doneList
+    handleAddTodoDone(event);
+
+    // render lại mảng done
+    renderDone();
+}
+
+function handleAddTodoDone(event) {
+    let id = event.currentTarget.getAttribute('data-id');
+
+    doneList.push(id);
+}
+
+function renderDone() {
+    let doneListEle = document.querySelector("#done-list");
+
+    let content = '';
+
+    for (let i = 0; i <= doneList.length - 1; i++) {
+        // onclick="handleDeleteTodo()"
+        content += `<li>${doneList[i]} 
+            <button onclick="handleCompleteTodo(event)" data-id="${doneList[i]}" class="done-btn" >
+                <i class="fa-solid fa-check"></i>
+            </button> 
+
+             <button onclick="handleRedoTodo(event)" data-id="${doneList[i]}" class="undo-btn" >
+                <i class="fa-solid fa-rotate-left"></i>
+            </button>
+        </li>`;
+    }
+
+    doneListEle.innerHTML = content;
+
+
+    console.log(doneList);
+}
+
+function handleDeleteTodoDone(event) {
+    let id = event.currentTarget.getAttribute('data-id');
+    let index = findIndex(doneList, id);
+
     if (index == -1) {
         return;
     }
-    todoList.splice(index, 1);
+
+    doneList.splice(index, 1);
+}
+
+function handleCompleteTodo(event) {
+    console.log('🚀 >>>::::::::: complete :::::::::', event);
+    // Xóa khỏi mảng done
+    handleDeleteTodoDone(event);
+    // render lại mảng done
+    renderDone();
+}
+
+function handleRedoTodo(event) {
+    console.log('🚀 >>>::::::::: redo :::::::::', event);
+
+    let id = event.currentTarget.getAttribute('data-id');
+    
+    // xóa khỏi mảng done
+    handleDeleteTodoDone(event);
+
+    // thêm vào mảng todo
+    todoList.push(id);
+
+    renderDone();
     renderTodos();
+}
+
+function handleDelete(event) {
+    /**
+     * target: là phần tử được click
+     * currentTarget: là phần tử được gán event click
+     */
+
+    /**
+     * - khi click vào icon thì 
+     * event.currentTarget ==> button
+     * event.target ==> icon
+     * 
+     * - khi click vào button thì
+     * event.currentTarget ==> button
+     * event.target ==> button
+     */
+    let id = event.currentTarget.getAttribute('data-id');
+    let index = findIndex(todoList, id);
+
+    if (index == -1) {
+        return;
+    }
+
+    todoList.splice(index, 1);
 }
 
 function handleDeleteTodo(id) {
@@ -168,8 +266,16 @@ function handleDeleteTodo(id) {
     // Xoa
     todoList.splice(index, 1);
 
+    // @TODO
+    // Thêm vào mảng doneList
+
+
     // Render lại mảng todo
     renderTodos();
+
+
+    // @TODO
+    // render lại mảng done
 }
 
 function findIndex(arr, value) {
@@ -199,3 +305,7 @@ function findIndex(arr, value) {
 
 
 
+// document.querySelector("#done-list").onclick = function (event) {
+//     // handleAddTodo(event)
+//     // console.log(12)
+// }
