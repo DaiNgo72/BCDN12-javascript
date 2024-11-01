@@ -79,7 +79,13 @@ let todoList = [
     "html",
     "css",
     "js",
-    "git"
+    "git",
+
+    {
+        a: 'git',
+        b: true,
+        c: 'done'
+    }
 ];
 
 let doneList = [];
